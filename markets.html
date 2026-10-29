@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Markets | Nexora Capital</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <style>
+        /* ========================================
+   MOBILE ZOOM AND OVERFLOW FIX
+   ======================================== */
+
+        html {
+            width: 100%;
+            max-width: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        /* Ensure padding doesn't increase element width */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Prevent main layout containers from forcing a wide page */
+        .container,
+        .main-content,
+        .page-content,
+        .markets-container,
+        .markets-content,
+        .dashboard-layout,
+        .dashboard-main {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        /* Mobile layout */
+        @media screen and (max-width: 768px) {
+
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .container,
+            .main-content,
+            .page-content,
+            .markets-container,
+            .markets-content {
+                width: 100%;
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            /* Keep headings and descriptions inside the screen */
+            h1,
+            h2,
+            h3,
+            p {
+                overflow-wrap: anywhere;
+            }
+
+            /* Prevent form fields from triggering automatic iPhone zoom */
+            input,
+            select,
+            textarea {
+                font-size: 16px;
+            }
+
+            /* Allow market tables to scroll independently */
+            .markets-table-wrapper,
+            .table-wrapper,
+            .table-wrap {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Keep wide tables readable without expanding the page */
+            .markets-table,
+            .data-table {
+                min-width: 600px;
+            }
+
+            /* Make market cards adapt to narrow screens */
+            .markets-grid,
+            .market-cards,
+            .market-grid {
+                grid-template-columns: minmax(0, 1fr);
+                width: 100%;
+                min-width: 0;
+            }
+
+            /* Prevent flex and grid children from forcing page width */
+            .market-card,
+            .market-item,
+            .market-row {
+                min-width: 0;
+                max-width: 100%;
+            }
+
+            img,
+            video,
+            iframe {
+                max-width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </span>
+
+                <span>
+                    NEXORA
+                    <small>CAPITAL</small>
+                </span>
+            </a>
+
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="invest.html">Invest</a>
+                <a href="profile.html">Profile</a>
+
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-grip"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a href="markets.html" class="active">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Markets</span>
+                </a>
+
+                <a href="portfolio.html">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>My Portfolio</span>
+                </a>
+
+                <a href="transactions.html">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <span>Transactions</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-demo-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <strong>Illustrative markets</strong>
+
+                    <p>
+                        Browse sample prices. Trading and payments are not connected.
+                    </p>
+                </div>
+
+                <button id="logoutButton" class="sidebar-logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Log out</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-main">
+
+            <!-- TOP BAR -->
+            <header class="dashboard-topbar">
+
+                <div>
+                    <p class="topbar-eyebrow">EXPLORE OPPORTUNITIES</p>
+                    <h1>Markets</h1>
+
+                    <p class="dashboard-date">
+                        Explore assets across multiple market categories.
+                    </p>
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="topbar-user-info">
+                        <strong id="topbarUserName"> User</strong>
+                        <span>Account ledger</span>
+                    </div>
+
+                    <div class="user-avatar" id="userAvatar">
+                        DU
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- DEMO NOTICE -->
+            <div class="demo-banner">
+
+                <span class="demo-banner-icon">
+                    <i class="fa-solid fa-circle-info"></i>
+                </span>
+
+                <div>
+                    <strong>Market data</strong>
+
+                    <p>
+                        All displayed prices and percentage movements
+                        are illustrative. They are not investment recommendations.
+                    </p>
+                </div>
+
+                <span class="demo-status">SAMPLE</span>
+
+            </div>
+
+
+            <!-- MARKET INTRO -->
+            <section class="markets-intro">
+
+                <div>
+                    <p class="section-eyebrow">GLOBAL ASSET EXPLORER</p>
+
+                    <h2>
+                        Discover the
+                        <span>markets.</span>
+                    </h2>
+
+                    <p>
+                        Browse digital assets, automotive equities,
+                        energy benchmarks, and petroleum products
+                        in one place.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- MARKET OVERVIEW CARDS -->
+            <section class="market-overview-cards">
+
+                <article class="market-overview-card">
+
+                    <span class="market-overview-icon crypto-overview">
+                        <i class="fa-brands fa-bitcoin"></i>
+                    </span>
+
+                    <div>
+                        <span>Digital assets</span>
+                        <h3 id="cryptoAssetCount">3 assets</h3>
+                        <small>Cryptocurrency listings</small>
+                    </div>
+
+                </article>
+
+
+                <article class="market-overview-card">
+
+                    <span class="market-overview-icon stocks-overview">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </span>
+
+                    <div>
+                        <span>Equities</span>
+                        <h3 id="stocksAssetCount">2 assets</h3>
+                        <small>Automotive company examples</small>
+                    </div>
+
+                </article>
+
+
+                <article class="market-overview-card">
+
+                    <span class="market-overview-icon energy-overview">
+                        <i class="fa-solid fa-oil-well"></i>
+                    </span>
+
+                    <div>
+                        <span>Energy & petroleum</span>
+                        <h3 id="energyAssetCount">5 assets</h3>
+                        <small>Benchmark listings</small>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- MARKET EXPLORER -->
+            <section class="panel markets-explorer-panel">
+
+                <div class="panel-heading markets-heading">
+
+                    <div>
+                        <p class="section-eyebrow">ASSET DIRECTORY</p>
+                        <h3>Explore all assets</h3>
+                    </div>
+
+                    <span class="market-data-label">
+                        <span></span>
+                        Sample data
+                    </span>
+
+                </div>
+
+
+                <!-- SEARCH -->
+                <div class="market-search-row">
+
+                    <div class="market-search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="search" id="marketSearch" placeholder="Search Bitcoin, Tesla, crude oil..."
+                            autocomplete="off" aria-label="Search demo assets">
+
+                    </div>
+
+                    <select id="marketSort" aria-label="Sort assets">
+
+                        <option value="default">Default order</option>
+
+                        <option value="name-asc">Name: A to Z</option>
+
+                        <option value="price-high">Price: High to low</option>
+
+                        <option value="price-low">Price: Low to high</option>
+
+                        <option value="change-high">Change: High to low</option>
+
+                        <option value="change-low">Change: Low to high</option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CATEGORY FILTERS -->
+                <div class="category-filters" id="marketFilters">
+
+                    <button type="button" class="filter-button active" data-category="all">
+                        All assets
+                    </button>
+
+                    <button type="button" class="filter-button" data-category="crypto">
+                        <i class="fa-brands fa-bitcoin"></i>
+                        Crypto
+                    </button>
+
+                    <button type="button" class="filter-button" data-category="stocks">
+                        <i class="fa-solid fa-building-columns"></i>
+                        Stocks
+                    </button>
+
+                    <button type="button" class="filter-button" data-category="energy">
+                        <i class="fa-solid fa-oil-well"></i>
+                        Oil & Gas
+                    </button>
+
+                    <button type="button" class="filter-button" data-category="petroleum">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        Petroleum
+                    </button>
+
+                </div>
+
+
+                <!-- ASSET TABLE -->
+                <div class="table-wrap markets-table-wrap">
+
+                    <table class="data-table markets-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Asset</th>
+                                <th>Category</th>
+                                <th>Real-Time price</th>
+                                <th>Sample movement</th>
+                                <th>Your position</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="marketsTableBody">
+
+                            <tr>
+                                <td colspan="6">
+                                    Loading markets...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- NO RESULTS -->
+                <div id="marketEmptyState" class="market-empty-state" hidden>
+
+                    <span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+
+                    <h3>No assets found</h3>
+
+                    <p>
+                        Try a different search term or category.
+                    </p>
+
+                    <button type="button" class="btn btn-secondary" id="clearMarketFilters">
+                        Clear filters
+                    </button>
+
+                </div>
+
+
+                <!-- TABLE FOOTER -->
+                <div class="markets-table-footer">
+
+                    <p id="marketResultsCount">
+                        Showing 10 assets
+                    </p>
+
+                    <!-- <p>
+                        Prices are illustrative sample data, not live quotations.
+                    </p> -->
+
+                </div>
+
+            </section>
+
+
+            <!-- DISCLAIMER -->
+            <section class="markets-disclaimer">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <div>
+                    <strong>About this market explorer</strong>
+
+                    <p>
+                        This is an educational interface.
+                        Cryptocurrency, company shares, oil, natural gas,
+                        gasoline, and diesel may represent different types
+                        of financial instruments or physical commodities.
+                        No live trading or investment advice
+                        is provided.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+
+                <p>
+                    &copy; <span id="currentYear"></span>
+                    Nexora Capital.
+                </p>
+
+                <!-- <p>
+                    Simulated environment. Brokerage service.
+                </p> -->
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- SHARED DEMO TRADE MODAL -->
+    <!-- SHARED AUTHENTICATION HELPERS -->
+    <script src="js/auth.js"></script>
+
+    <!-- SHARED APP SCRIPT -->
+    <script src="js/app.js"></script>
+
+    <!-- DASHBOARD TRADE LOGIC -->
+    <script src="js/dashboard.js"></script>
+
+    <!-- MARKETS PAGE LOGIC -->
+    <script src="js/markets.js"></script>
+
+</body>
+
+</html>

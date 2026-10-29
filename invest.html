@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recorded Allocations | Nexora Capital</title><link rel="stylesheet" href="css/accounts.css">
+<script src="js/auth.js" defer></script><script src="js/invest.js" defer></script></head>
+<body class="account-page"><main class="account-shell">
+<header class="account-header"><div><p class="muted">NEXORA CAPITAL / ALLOCATIONS</p><h1>Allocate your recorded balance</h1></div><nav class="account-nav"><a href="dashboard.html">Overview</a><a href="portfolio.html">Portfolio</a><a href="transactions.html">History</a><button id="investLogout" class="secondary">Log out</button></nav></header>
+<p class="account-notice"><strong>Recorded allocations — purchases not verified.</strong> Choose an asset and set aside an exact USD amount from your recorded balance. An allocation does not establish a stock or cryptocurrency purchase or ownership. No shares, coins, or investment returns are calculated.</p>
+<p id="investError" role="alert"></p><p id="investStatus" role="status"></p>
+<section class="account-card" aria-label="Recorded balances"><div class="trading-balances">
+<div><p class="muted">Available recorded balance</p><p id="ledgerBalance" class="amount">Loading…</p></div>
+<div><p class="muted">Allocated (purchase not verified)</p><p id="allocatedBalance" class="amount">Loading…</p></div>
+<div><p class="muted">Total recorded balance</p><p id="totalRecordedBalance" class="amount">Loading…</p></div>
+</div><p class="muted">Recording an allocation moves an amount from available to allocated within your account records. It does not move money to an exchange or prove that funds are held by a custodian.</p></section>
+<div class="account-columns">
+<section class="account-card"><h2>Choose a stock or cryptocurrency</h2><label>Asset type<select id="assetClass"><option value="stock">Stocks</option><option value="crypto">Cryptocurrency</option></select></label><label>Search catalogue<input id="assetSearch" type="search" placeholder="Search by name or symbol" maxlength="80"></label><div id="assetList" class="asset-choice-list" aria-label="Allocation catalogue"></div></section>
+<section class="account-card"><h2>Record an allocation</h2><p id="selectedAsset" class="muted">Choose an asset to begin.</p>
+<form id="allocationForm"><fieldset id="allocationFields" disabled><label>Amount (USD)<input id="allocationAmount" type="text" inputmode="decimal" placeholder="0.00" maxlength="20" required></label><p class="muted">The exact USD amount will be deducted from your available recorded balance and displayed against this asset in your portfolio.</p><button type="submit">Review allocation</button></fieldset></form>
+<section id="allocationReview" class="account-notice" hidden aria-label="Allocation review"><h3>Review your allocation</h3><dl id="reviewDetails" class="review-details"></dl><p><strong>Recorded allocation — purchase not verified.</strong></p><label class="acknowledgement"><input id="allocationAcknowledgement" type="checkbox"> I understand this is an account allocation record; an asset purchase and ownership have not been verified.</label><div class="account-actions"><button id="confirmAllocation" type="button">Confirm recorded allocation</button><button id="editAllocation" type="button" class="secondary">Edit</button></div></section>
+</section></div>
+<section class="account-card"><div class="account-header"><h2>Your recorded allocations</h2><button id="refreshAllocations" type="button" class="secondary">Refresh allocations</button></div><p class="muted">Latest 500 records. Active allocations are included in the allocated balance above. Releasing an allocation returns its original recorded amount to the available balance; it is not an asset sale or a cash withdrawal.</p><div class="table-scroll"><table><thead><tr><th>Date</th><th>Asset</th><th>Amount (USD)</th><th>Verification</th><th>Record status</th><th>Manage</th></tr></thead><tbody id="allocationRows"><tr><td colspan="6">Loading allocations…</td></tr></tbody></table></div></section>
+<details id="legacyDrafts" class="account-card" hidden><summary>Previous order drafts</summary><p class="muted">These drafts have not allocated any balance. Use a draft's amount to prepare a new allocation and confirm it separately.</p><div class="table-scroll"><table><thead><tr><th>Created</th><th>Asset</th><th>Draft size</th><th>Status</th><th>Action</th></tr></thead><tbody id="draftRows"></tbody></table></div></details>
+</main></body></html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Overview | Nexora Capital</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </span>
+
+                <span>
+                    NEXORA
+                    <small>CAPITAL</small>
+                </span>
+
+            </a>
+
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="invest.html">Invest</a>
+                <a href="profile.html">Profile</a>
+
+                <a href="dashboard.html" class="active">
+                    <i class="fa-solid fa-grip"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a href="markets.html">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Markets</span>
+                </a>
+
+                <a href="portfolio.html">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>My Portfolio</span>
+                </a>
+
+                <a href="transactions.html">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <span>Transactions</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-demo-card">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <strong>Your account</strong>
+
+                    <p>
+                        Your profile and account ledger are stored securely on the server.
+                    </p>
+
+                </div>
+
+                <button id="logoutButton" class="sidebar-logout">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Log out
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN DASHBOARD -->
+        <main class="dashboard-main overview-page">
+
+            <!-- TOP BAR -->
+            <header class="dashboard-topbar">
+
+                <div>
+
+                    <p class="topbar-eyebrow">
+                        NEXORA CAPITAL / WORKSPACE
+                    </p>
+
+                    <h1>Account Overview</h1>
+
+                    <p id="dashboardDate" class="dashboard-date"></p>
+
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="topbar-user-info">
+
+                        <strong id="topbarUserName">
+                            User
+                        </strong>
+
+                        <span>Account ledger</span>
+
+                    </div>
+
+                    <div id="userAvatar" class="user-avatar">
+                        DU
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- DEMO NOTICE -->
+            <div class="overview-demo-notice">Account ledger: credits, debits, and allocations are recorded entries. Allocated amounts are set aside within your records; asset purchases are not verified.</div>
+
+
+            <!-- WELCOME -->
+            <section class="overview-welcome">
+
+                <div>
+
+                    <p class="section-eyebrow">
+                        YOUR FINANCIAL OVERVIEW
+                    </p>
+
+                    <h2>
+                        Welcome back,
+                        <span id="welcomeName">Investor</span>.
+                    </h2>
+
+                    <p>
+                        Here's a snapshot of your investment portfolio.
+                    </p>
+
+                </div>
+
+                <a href="markets.html" class="btn btn-primary">
+
+                    Explore markets
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </section>
+
+
+            <!-- TOTAL RECORDED VALUE -->
+            <section class="overview-balance-card">
+
+                <div class="overview-balance-content">
+
+                    <div class="overview-balance-label">
+
+                        <span class="overview-balance-dot"></span>
+
+                        TOTAL RECORDED VALUE
+
+                    </div>
+
+                    <h2 id="totalPortfolioValue">
+                        $0.00
+                    </h2>
+
+                    <p>
+                        Available recorded balance plus recorded allocations
+                    </p>
+
+                    <div class="overview-balance-actions">
+
+                        <a href="portfolio.html" class="btn btn-primary">
+                            View portfolio
+                        </a>
+
+                        <a href="markets.html" class="btn btn-secondary">
+                            Browse assets
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="overview-balance-decoration">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+            </section>
+
+
+            <!-- FINANCIAL SUMMARY -->
+            <section class="overview-stat-grid">
+
+                <article class="overview-stat-card">
+
+                    <div class="overview-stat-heading">
+
+                        <span>Available recorded balance</span>
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                    </div>
+
+                    <h3 id="availableCash">
+                        $0.00
+                    </h3>
+
+                    <p>Available for recorded allocations</p>
+
+                </article>
+
+
+                <article class="overview-stat-card">
+
+                    <div class="overview-stat-heading">
+
+                        <span>Allocated balance</span>
+
+                        <i class="fa-solid fa-layer-group"></i>
+
+                    </div>
+
+                    <h3 id="investedValue">
+                        $0.00
+                    </h3>
+
+                    <p>Total allocated amount</p>
+
+                </article>
+
+
+                <article class="overview-stat-card">
+
+                    <div class="overview-stat-heading">
+
+                        <span>Unrealized P/L</span>
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                    </div>
+
+                    <h3 id="totalProfitLoss">
+                        $0.00
+                    </h3>
+
+                    <p id="profitLossNote">
+                        Portfolio return
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- ALLOCATIONS AND BREAKDOWN -->
+            <section class="overview-analysis-grid">
+
+                <article class="overview-panel dashboard-allocations-panel"><div class="overview-panel-heading"><h3>Allocations</h3><a href="invest.html">Allocate balance</a></div><p>Total allocated balance</p><h2 id="dashboardAllocatedBalance">$0.00</h2><div class="table-scroll"><table><thead><tr><th>Asset</th><th>Amount (USD)</th><th>Date</th></tr></thead><tbody id="dashboardRecordedAllocations"></tbody></table></div></article>
+
+                <!-- ASSET ALLOCATION -->
+                <article class="overview-panel allocation-panel">
+
+                    <div class="overview-panel-heading">
+
+                        <div>
+
+                            <p class="section-eyebrow">
+                                PORTFOLIO BREAKDOWN
+                            </p>
+
+                            <h3>Asset allocation</h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="allocation-donut-container">
+
+                        <div id="allocationDonut" class="allocation-donut" role="img"
+                            aria-label="Allocated balance breakdown">
+
+                            <div class="allocation-donut-center">
+
+                                <span>ALLOCATED</span>
+
+                                <strong id="allocationTotal">
+                                    $0.00
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="allocationLegend" class="allocation-legend">
+
+                        <p class="allocation-empty">
+                            Loading allocation...
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- MARKET WATCH AND ACTIVITY -->
+            <section class="overview-bottom-grid">
+
+                <!-- SELECTED ASSETS -->
+                <article class="overview-panel">
+
+                    <div class="overview-panel-heading">
+
+                        <div>
+
+                            <p class="section-eyebrow">
+                                MARKET WATCH
+                            </p>
+
+                            <h3>Selected assets</h3>
+
+                        </div>
+
+                        <a href="markets.html" class="text-link">
+
+                            View markets
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                    <div id="dashboardMarkets" class="overview-watchlist">
+
+                        <p class="allocation-empty">
+                            Loading selected assets...
+                        </p>
+
+                    </div>
+
+                    <!-- <p class="holdings-disclaimer">
+                        Prices and percentage changes have illustrative values.
+                    </p> -->
+
+                </article>
+
+
+                <!-- RECENT TRANSACTIONS -->
+                <article class="overview-panel">
+
+                    <div class="overview-panel-heading">
+
+                        <div>
+
+                            <p class="section-eyebrow">
+                                ACCOUNT ACTIVITY
+                            </p>
+
+                            <h3>Recent transactions</h3>
+
+                        </div>
+
+                        <a href="transactions.html" class="text-link">
+
+                            View all
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                    <div class="table-wrap">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Asset</th>
+
+                                    <th>Type</th>
+
+                                    <th>Total</th>
+
+                                    <th>Date</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="recentTransactions">
+
+                                <tr>
+
+                                    <td colspan="4">
+                                        Loading transactions...
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <p class="holdings-disclaimer">
+                        <!-- Sample transactions are illustrative and are not actual executed trades. -->
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- INVESTMENT HOLDINGS -->
+            <section class="overview-panel holdings-panel">
+
+                <div class="overview-panel-heading">
+
+                    <div>
+
+                        <span class="market-data-label">
+                            YOUR PORTFOLIO
+                        </span>
+
+                        <h2>Investment Holdings</h2>
+
+                        <p class="holdings-subtitle">
+                            Review your asset allocations, amounts and allocation dates.
+                        </p>
+
+                    </div>
+
+                    <span class="overview-demo-tag">
+                        ACCOUNT DATA
+                    </span>
+
+                </div>
+
+
+                <!-- HOLDINGS SUMMARY -->
+                <div class="holdings-summary">
+
+                    <div>
+
+                        <span>Assets held</span>
+
+                        <strong id="holdingsAssetCount">0</strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Total cost basis</span>
+
+                        <strong id="holdingsCostBasis">$0.00</strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Current value</span>
+
+                        <strong id="holdingsCurrentValue">$0.00</strong>
+
+                    </div>
+
+                    <div>
+
+                        <span>Unrealized P/L</span>
+
+                        <strong id="holdingsProfitLoss">$0.00</strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HOLDINGS TABLE -->
+                <div class="holdings-table-wrapper">
+
+                    <table class="holdings-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Investment</th>
+
+                                <th>Allocated amount</th>
+
+                                <th>Allocation date</th>
+
+                                <th>Holding period</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="investmentHoldingsBody">
+
+                            <tr>
+
+                                <td colspan="4">
+                                    Loading portfolio holdings...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- <p class="holdings-disclaimer">
+                    Fictional demonstration portfolio. Values, dates and returns
+                    do not represent verified investment performance.
+                </p> -->
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+
+                <p>
+                    &copy;
+                    <span id="currentYear"></span>
+                    Nexora Capital.
+                </p>
+
+                <!-- <p>
+                    Simulated educational interface. Not a brokerage service.
+                </p> -->
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- KEEP THESE SCRIPTS IN THIS ORDER -->
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
